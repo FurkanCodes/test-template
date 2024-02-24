@@ -1,0 +1,54 @@
+.navbar {
+  background-color: light-dark(
+    var(--mantine-color-white),
+    var(--mantine-color-dark-6)
+  );
+  position: relative; /* Add this to enable positioning of the footer */
+  height: 0.2rem;
+  width: 0.2rem;
+  padding: var(--mantine-spacing-md);
+  padding-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  border-right: rem(1px) solid
+    light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
+}
+
+.header {
+  padding: 0.2rem;
+  padding-top: 0;
+  margin-left: 20px;
+  margin-right: 0.2rem;
+  color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
+  border-bottom: rem(1px) solid
+    light-dark(var(--mantine-colorz-gray-3), var(--mantine-color-dark-4));
+}
+
+.links {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.linksInner {
+  padding-top: var(--mantine-spacing-xl);
+  padding-bottom: var(--mantine-spacing-xl);
+}
+
+.logo {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 0.9rem;
+  padding-right: 9rem;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0.5rem;
+  padding-top: 1rem;
+  padding-left: 1rem;
+  width: 100%; /* Make sure it spans the full width of the sidebar */
+  margin-left: 0;
+  margin-right: calc(var(--mantine-spacing-md) * -1);
+  box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 -2px 4px -1px rgba(0, 0, 0, 0.06);
+}
