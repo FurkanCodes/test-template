@@ -2,11 +2,8 @@ import { useState } from 'react'
 import { Input, InputBase, Combobox, useCombobox } from '@mantine/core'
 
 const groceries = [
-  '🍎 Apples',
-  '🍌 Bananas',
-  '🥦 Broccoli',
-  '🥕 Carrots',
-  '🍫 Chocolate',
+  'Test verisi',
+
 ]
 
 function ComboboxAtom() {
@@ -32,14 +29,14 @@ function ComboboxAtom() {
     >
       <Combobox.Target>
         <InputBase
-          component='button'
+          component='button'  
           type='button'
           pointer
           rightSection={<Combobox.Chevron />}
           rightSectionPointerEvents='none'
           onClick={() => combobox.toggleDropdown()}
         >
-          {value || <Input.Placeholder>Pick value</Input.Placeholder>}
+          {value || <Input.Placeholder>Değer seçin</Input.Placeholder>}
         </InputBase>
       </Combobox.Target>
 

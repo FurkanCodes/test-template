@@ -36,13 +36,10 @@ const theme = createTheme({
   colors: {
     myColor,
   },
-  fontFamily: "Verdana, sans-serif",
-  fontFamilyMonospace: "Monaco, Courier, monospace",
+
+  fontFamily: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji",
   headings: {
-    fontFamily: "Roboto, sans-serif",
-    sizes: {
-      h1: { fontSize: rem(36) },
-    },
+    fontFamily: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji",
   },
   shadows: {
     md: "1px 1px 3px rgba(0, 0, 0, .25)",

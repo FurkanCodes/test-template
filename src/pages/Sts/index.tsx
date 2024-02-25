@@ -41,7 +41,7 @@ function Sts() {
         <Example />
       ) : (
         <>
-          {/* Your existing components */}
+       
           <Title
             order={3}
             style={{
