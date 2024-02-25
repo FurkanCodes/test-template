@@ -89,7 +89,12 @@ function Sidebar({ opened, toggleMobile }) {
             <div className={styles.logo}>
               <Group>
                 <Image src="/src/assets/kırmızı.png" h={50} w={60} />
-                <Text size="md">BOTAŞ</Text>
+                <Text
+                component="span"
+                inherit
+                variant="gradient"
+                gradient={{ from: 'red', to: 'blue' }}
+              > BOTAŞ </Text>
               </Group>
             </div>
             {tablet_match && (

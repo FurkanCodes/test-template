@@ -36,8 +36,8 @@ const theme = createTheme({
   colors: {
     myColor,
   },
-
-  fontFamily: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji",
+  white: "#f2f2f2 ",
+  fontFamily: "Quicksand, sans-serif",
   headings: {
     fontFamily: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji",
   },

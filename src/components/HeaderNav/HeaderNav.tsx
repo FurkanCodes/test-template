@@ -315,7 +315,7 @@ const HeaderNav = (props: HeaderNavProps) => {
                   leftSection={<IconMoonStars size={16} />}
                   onClick={() => setColorScheme('dark')}
                 >
-                  Karanlı
+                  Karanlık
                   <keygen />
                 </Menu.Item>
                 <Menu.Item

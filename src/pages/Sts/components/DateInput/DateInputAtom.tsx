@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import { DateInput } from '@mantine/dates'
-
-function DateInputAtom() {
+import { DateInput, DateTimePicker } from '@mantine/dates'
+import 'dayjs/locale/tr';
+function DateInputAtom({placeholder}) {
   const [value, setValue] = useState<Date | null>(null)
   return (
-    <DateInput value={value} onChange={setValue} placeholder='Sisteme Giriş' />
+    <DateTimePicker locale='tr' clearable value={value} onChange={setValue} placeholder={placeholder} />
   )
 }
 export default DateInputAtom

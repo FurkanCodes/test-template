@@ -35,6 +35,7 @@ export function LinksGroup({
   const goNavigate = (e: any, link: To) => {
     e.preventDefault()
     console.log(link)
+    
     navigate(link)
   }
   const items = (hasLinks ? links : []).map(link => (

@@ -1,42 +1,57 @@
-import { useState } from 'react'
-import { Input, InputBase, Combobox, useCombobox } from '@mantine/core'
+import { useState } from 'react';
+import { CloseButton, Combobox, Input, InputBase, useCombobox } from '@mantine/core';
 
 const groceries = [
-  'Test verisi',
+  'Test',
+  'Test',
+  'Test',
+  'Test',
+  'Test',
+];
 
-]
-
-function ComboboxAtom() {
+export function ComboboxAtom({label}) {
   const combobox = useCombobox({
     onDropdownClose: () => combobox.resetSelectedOption(),
-  })
+  });
 
-  const [value, setValue] = useState<string | null>(null)
+  const [value, setValue] = useState<string | null>(null);
 
-  const options = groceries.map(item => (
+  const options = groceries.map((item) => (
     <Combobox.Option value={item} key={item}>
       {item}
     </Combobox.Option>
-  ))
+  ));
 
   return (
     <Combobox
       store={combobox}
-      onOptionSubmit={val => {
-        setValue(val)
-        combobox.closeDropdown()
+      withinPortal={false}
+      onOptionSubmit={(val) => {
+        setValue(val);
+        combobox.closeDropdown();
       }}
     >
       <Combobox.Target>
         <InputBase
-          component='button'  
-          type='button'
+          component="button"
+          type="button"
           pointer
-          rightSection={<Combobox.Chevron />}
-          rightSectionPointerEvents='none'
+          rightSection={
+            value !== null ? (
+              <CloseButton
+                size="sm"
+                onMouseDown={(event) => event.preventDefault()}
+                onClick={() => setValue(null)}
+                aria-label="Clear value"
+              />
+            ) : (
+              <Combobox.Chevron />
+            )
+          }
           onClick={() => combobox.toggleDropdown()}
+          rightSectionPointerEvents={value === null ? 'none' : 'all'}
         >
-          {value || <Input.Placeholder>Değer seçin</Input.Placeholder>}
+          {value || <Input.Placeholder>{label}</Input.Placeholder>}
         </InputBase>
       </Combobox.Target>
 
@@ -44,7 +59,7 @@ function ComboboxAtom() {
         <Combobox.Options>{options}</Combobox.Options>
       </Combobox.Dropdown>
     </Combobox>
-  )
+  );
 }
 
-export default ComboboxAtom
+export default ComboboxAtom;

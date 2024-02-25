@@ -1,0 +1,10 @@
+// HeadingTextComponent.scss
+
+.heading-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease; // Smooth transition for transform and box-shadow
+    
+    &:hover {
+      transform: scale(1.05); // Scale up the card on hover
+      box-shadow: 0px 0px 15px rgba(255, 0, 0, 0.3); // Add a subtle shadow on hover
+    }
+  }
