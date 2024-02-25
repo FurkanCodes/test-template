@@ -88,7 +88,7 @@ function Sidebar({ opened, toggleMobile }) {
           <Flex justify="space-between" align="center" gap="sm">
             <div className={styles.logo}>
               <Group>
-                <Image src="/public/kırmızı.png" h={50} w={60} />
+                <Image src="/public/kirmizi.png.png" h={50} w={60} />
                 <Text
                 component="span"
                 inherit
