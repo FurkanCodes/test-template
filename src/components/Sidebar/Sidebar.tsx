@@ -88,7 +88,7 @@ function Sidebar({ opened, toggleMobile }) {
           <Flex justify="space-between" align="center" gap="sm">
             <div className={styles.logo}>
               <Group>
-                <Image src="/public/kirmizi.png.png" h={50} w={60} />
+                <Image src="https://upload.wikimedia.org/wikipedia/tr/b/be/Botaslogo.png?20200221205653" h={50} w={60} />
                 <Text
                 component="span"
                 inherit
