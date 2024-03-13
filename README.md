@@ -16,9 +16,10 @@ Uygulamanın kolay yönetimi adına, her feature'a ait spesifik ihtiyaçları(ho
 util, style, components, types etc.) kendi feature klasoründe tutacağız. Örnek
 olarak bir feature'ın sahip olabileceği folder yapısı şöyle olabilir;
 
-> src/features/gaz-vanası-açılacak | **+-- api** # o feature'a ait api logic
-> burada, bu api logic bizim genel Api klasorundeki axios setupına gider
-> muhtemelen | **+-- assets** # bu feature'a ait spesifik bir asset
+> src/features/gaz-vanası-açılacak | 
+**+-- api** # o feature'a ait api logic
+> burada, bu api logic bizim genel Api klasorundeki axios setupına gider muhtemelen | 
+**+-- assets** # bu feature'a ait spesifik bir asset
 > kullanacaksak buraya | **+-- components** # bu feature'a ait spesifik bir
 > asset kullanacaksak buraya | **+-- hooks** # bu feature'a ait spesifik bir
 > hook kullanacaksak buraya | **+-- routes** # bu feature'a ait spesifik bir

@@ -1,19 +1,18 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import svgr from 'vite-plugin-svgr' // Corrected import for Vite
+import { defineConfig } from "vite";
 
+import react from "@vitejs/plugin-react";
+
+// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), svgr()], // Corrected order
-  css: {
-    preprocessorOptions: {
-      scss: {
-        additionalData: `@import "./src/_mantine";`,
-      },
+ plugins: [react()],
+ server: {
+    hmr: {
+      overlay: false,
     },
+ },
+ resolve: {
+  alias: {
+    src: "/src",
   },
-  resolve: {
-    alias: {
-      src: '/src',
-    },
-  },
-})
+ },
+});
