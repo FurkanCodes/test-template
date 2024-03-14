@@ -17,8 +17,9 @@ const SigninAuth = React.lazy(
   () => import("src/features/Auth/Signin/SigninAuth"),
 );
 
-const Metrics = React.lazy(() => import("src/modules/dashboards/Metrics"));
-const Widgets = React.lazy(() => import("src/modules/dashboards/Widgets"));
+// @ts-ignore
+const EpiasWebServices = React.lazy(() => import("src/modules/dashboards/epiaswebservices/epiasWebServices.tsx"));
+const ParameterManagement = React.lazy(() => import("src/modules/dashboards/parametermanagement/parametermanagement.tsx"));
 
 export const dashBoardConfigs = [
   {
@@ -54,13 +55,13 @@ export const dashBoardConfigs = [
   },
   {
     permittedRole: RoutePermittedRole.User,
-    path: "/dashboards/metrics",
-    element: <Metrics />,
+    path: "/dashboards/epiaswebservices",
+    element: <EpiasWebServices />,
   },
   {
     permittedRole: RoutePermittedRole.User,
-    path: "/dashboards/widgets",
-    element: <Widgets />,
+    path: "/dashboards/parametermanagement",
+    element: <ParameterManagement />,
   },
   {
     permittedRole: RoutePermittedRole.User,
