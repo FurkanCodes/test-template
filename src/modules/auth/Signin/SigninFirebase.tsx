@@ -46,7 +46,8 @@ const SigninFirebase = () => {
           <Formik
             validateOnChange={true}
             initialValues={{
-              email: messages['common.email'] as string,
+              // remove this attribute of Formik
+              email: '',
               password: '',
             }}
             validationSchema={validationSchema}

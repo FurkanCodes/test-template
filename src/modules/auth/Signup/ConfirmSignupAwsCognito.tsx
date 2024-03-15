@@ -1,44 +1,44 @@
-import React, { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useIntl } from 'react-intl';
-import { Fonts } from '@crema/constants/AppEnums';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import IntlMessages from '@crema/helpers/IntlMessages';
-import Button from '@mui/material/Button';
-import AppInfoView from '@crema/components/AppInfoView';
-import ReactCodeInput from 'react-code-input';
-import AuthWrapper from '../AuthWrapper';
-import { useAwsCognitoActions } from '@crema/services/auth/aws-cognito/AWSAuthProvider';
-import AppLogo from '@crema/components/AppLayout/components/AppLogo';
-import { useInfoViewActionsContext } from '@crema/context/AppContextProvider/InfoViewContextProvider';
+import React, { useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { useIntl } from 'react-intl'
+import { Fonts } from 'src/constants/AppEnums'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import IntlMessages from 'src/helpers/IntlMessages'
+import Button from '@mui/material/Button'
+import AppInfoView from 'src/components/AppInfoView'
+import ReactCodeInput from 'react-code-input'
+import AuthWrapper from '../AuthWrapper'
+import { useAwsCognitoActions } from 'src/services/auth/aws-cognito/AWSAuthProvider'
+import AppLogo from 'src/components/AppLayout/components/AppLogo'
+import { useInfoViewActionsContext } from 'src/context/AppContextProvider/InfoViewContextProvider'
 
 const ConfirmSignupAwsCognito = () => {
-  const infoViewActionsContext = useInfoViewActionsContext();
-  const { confirmCognitoUserSignup } = useAwsCognitoActions();
+  const infoViewActionsContext = useInfoViewActionsContext()
+  const { confirmCognitoUserSignup } = useAwsCognitoActions()
 
-  const navigate = useNavigate();
-  const location = useLocation();
+  const navigate = useNavigate()
+  const location = useLocation()
 
-  const [pin, setPin] = useState('');
+  const [pin, setPin] = useState('')
 
-  const { messages } = useIntl();
+  const { messages } = useIntl()
 
   const handleSubmit = () => {
-    const email = location.state;
+    const email = location.state
     if (email && pin.length === 6) {
-      confirmCognitoUserSignup(email, pin);
+      confirmCognitoUserSignup(email, pin)
     } else if (!email) {
-      navigate('/signup');
+      navigate('/signup')
       infoViewActionsContext.fetchError(
         messages['validation.tryAgain'] as string,
-      );
+      )
     } else {
       infoViewActionsContext.fetchError(
         messages['validation.pinLength'] as string,
-      );
+      )
     }
-  };
+  }
 
   return (
     <AuthWrapper>
@@ -57,7 +57,7 @@ const ConfirmSignupAwsCognito = () => {
           component='h2'
           sx={{
             mb: 1.5,
-            color: (theme) => theme.palette.text.primary,
+            color: theme => theme.palette.text.primary,
             fontWeight: Fonts.SEMI_BOLD,
             fontSize: { xs: 14, xl: 16 },
           }}
@@ -86,7 +86,7 @@ const ConfirmSignupAwsCognito = () => {
             inputMode='numeric'
             value={pin}
             fields={6}
-            onChange={(value) => setPin(value)}
+            onChange={value => setPin(value)}
           />
         </Box>
 
@@ -107,7 +107,7 @@ const ConfirmSignupAwsCognito = () => {
         <AppInfoView />
       </Box>
     </AuthWrapper>
-  );
-};
+  )
+}
 
-export default ConfirmSignupAwsCognito;
+export default ConfirmSignupAwsCognito

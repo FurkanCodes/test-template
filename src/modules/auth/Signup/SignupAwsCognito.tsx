@@ -1,80 +1,80 @@
-import { Form, Formik } from "formik";
-import * as yup from "yup";
-import AppTextField from "@crema/components/AppFormComponents/AppTextField";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import Box from "@mui/material/Box";
-import Checkbox from "@mui/material/Checkbox";
-import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
-import AppInfoView from "@crema/components/AppInfoView";
-import Auth, { CognitoHostedUIIdentityProvider } from "@aws-amplify/auth";
-import { Fonts } from "@crema/constants/AppEnums";
-import { Link } from "react-router-dom";
-import { FaFacebookF } from "react-icons/fa";
-import { AiOutlineGoogle } from "react-icons/ai";
-import { useAwsCognitoActions } from "@crema/services/auth/aws-cognito/AWSAuthProvider";
-import { useIntl } from "react-intl";
-import AuthWrapper from "../AuthWrapper";
+import { Form, Formik } from 'formik'
+import * as yup from 'yup'
+import AppTextField from 'src/components/AppFormComponents/AppTextField'
+import IntlMessages from 'src/helpers/IntlMessages'
+import Box from '@mui/material/Box'
+import Checkbox from '@mui/material/Checkbox'
+import Button from '@mui/material/Button'
+import IconButton from '@mui/material/IconButton'
+import AppInfoView from 'src/components/AppInfoView'
+import Auth, { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth'
+import { Fonts } from 'src/constants/AppEnums'
+import { Link } from 'react-router-dom'
+import { FaFacebookF } from 'react-icons/fa'
+import { AiOutlineGoogle } from 'react-icons/ai'
+import { useAwsCognitoActions } from 'src/services/auth/aws-cognito/AWSAuthProvider'
+import { useIntl } from 'react-intl'
+import AuthWrapper from '../AuthWrapper'
 
 const SignupAwsCognito = () => {
-  const { signUpCognitoUser } = useAwsCognitoActions();
-  const { messages } = useIntl();
+  const { signUpCognitoUser } = useAwsCognitoActions()
+  const { messages } = useIntl()
 
   const validationSchema = yup.object({
-    name: yup.string().required(String(messages["validation.nameRequired"])),
+    name: yup.string().required(String(messages['validation.nameRequired'])),
     email: yup
       .string()
-      .email(String(messages["validation.emailFormat"]))
-      .required(String(messages["validation.emailRequired"])),
+      .email(String(messages['validation.emailFormat']))
+      .required(String(messages['validation.emailRequired'])),
     password: yup
       .string()
-      .required(String(messages["validation.passwordRequired"])),
+      .required(String(messages['validation.passwordRequired'])),
     confirmPassword: yup
       .string()
-      .required(String(messages["validation.reTypePassword"])),
-  });
+      .required(String(messages['validation.reTypePassword'])),
+  })
 
   return (
     <AuthWrapper>
-      <Box sx={{ flex: 1, display: "flex", flexDirection: "column" }}>
-        <Box sx={{ flex: 1, display: "flex", flexDirection: "column", mb: 5 }}>
+      <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+        <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', mb: 5 }}>
           <Formik
             validateOnChange={true}
             initialValues={{
-              name: "",
-              email: "",
-              password: "",
-              confirmPassword: "",
+              name: '',
+              email: '',
+              password: '',
+              confirmPassword: '',
             }}
             validationSchema={validationSchema}
             onSubmit={(data, { setSubmitting, setErrors }) => {
               if (data.password !== data.confirmPassword) {
                 setErrors({
                   confirmPassword: String(
-                    <IntlMessages id="validation.passwordMisMatch" />,
+                    <IntlMessages id='validation.passwordMisMatch' />,
                   ),
-                });
+                })
               } else {
-                setSubmitting(true);
+                setSubmitting(true)
                 signUpCognitoUser({
                   email: data.email,
                   password: data.password,
                   name: data.name,
-                });
-                setSubmitting(false);
+                })
+                setSubmitting(false)
               }
             }}
           >
             {({ isSubmitting }) => (
-              <Form style={{ textAlign: "left" }} noValidate autoComplete="off">
+              <Form style={{ textAlign: 'left' }} noValidate autoComplete='off'>
                 <Box sx={{ mb: { xs: 4, xl: 5 } }}>
                   <AppTextField
-                    label={<IntlMessages id="common.name" />}
-                    name="name"
-                    variant="outlined"
+                    label={<IntlMessages id='common.name' />}
+                    name='name'
+                    variant='outlined'
                     sx={{
-                      width: "100%",
-                      "& .MuiInputBase-input": {
+                      width: '100%',
+                      '& .MuiInputBase-input': {
                         fontSize: 14,
                       },
                     }}
@@ -83,12 +83,12 @@ const SignupAwsCognito = () => {
 
                 <Box sx={{ mb: { xs: 4, xl: 5 } }}>
                   <AppTextField
-                    label={<IntlMessages id="common.email" />}
-                    name="email"
-                    variant="outlined"
+                    label={<IntlMessages id='common.email' />}
+                    name='email'
+                    variant='outlined'
                     sx={{
-                      width: "100%",
-                      "& .MuiInputBase-input": {
+                      width: '100%',
+                      '& .MuiInputBase-input': {
                         fontSize: 14,
                       },
                     }}
@@ -97,13 +97,13 @@ const SignupAwsCognito = () => {
 
                 <Box sx={{ mb: { xs: 4, xl: 5 } }}>
                   <AppTextField
-                    label={<IntlMessages id="common.password" />}
-                    name="password"
-                    type="password"
-                    variant="outlined"
+                    label={<IntlMessages id='common.password' />}
+                    name='password'
+                    type='password'
+                    variant='outlined'
                     sx={{
-                      width: "100%",
-                      "& .MuiInputBase-input": {
+                      width: '100%',
+                      '& .MuiInputBase-input': {
                         fontSize: 14,
                       },
                     }}
@@ -113,60 +113,60 @@ const SignupAwsCognito = () => {
                 <Box
                   sx={{
                     mb: { xs: 3, xl: 4 },
-                    display: "flex",
-                    alignItems: "center",
-                    flexWrap: "wrap",
+                    display: 'flex',
+                    alignItems: 'center',
+                    flexWrap: 'wrap',
                   }}
                 >
                   <Box
                     sx={{
-                      display: "flex",
-                      alignItems: "center",
+                      display: 'flex',
+                      alignItems: 'center',
                     }}
                   >
                     <Checkbox
-                      id="iAgreeTo"
+                      id='iAgreeTo'
                       sx={{
                         ml: -3,
                       }}
                     />
                     <Box
-                      aria-labelledby="iAgreeTo"
-                      component="span"
+                      aria-labelledby='iAgreeTo'
+                      component='span'
                       sx={{
                         mr: 2,
-                        color: "grey.700",
+                        color: 'grey.700',
                       }}
                     >
-                      <IntlMessages id="common.iAgreeTo" />
+                      <IntlMessages id='common.iAgreeTo' />
                     </Box>
                   </Box>
                   <Box
-                    component="span"
+                    component='span'
                     sx={{
-                      color: (theme) => theme.palette.primary.main,
-                      cursor: "pointer",
+                      color: theme => theme.palette.primary.main,
+                      cursor: 'pointer',
                     }}
                   >
-                    <IntlMessages id="common.termConditions" />
+                    <IntlMessages id='common.termConditions' />
                   </Box>
                 </Box>
 
                 <div>
                   <Button
-                    variant="contained"
-                    color="primary"
+                    variant='contained'
+                    color='primary'
                     disabled={isSubmitting}
                     sx={{
                       minWidth: 160,
                       fontWeight: Fonts.REGULAR,
                       fontSize: 16,
-                      textTransform: "capitalize",
-                      padding: "4px 16px 8px",
+                      textTransform: 'capitalize',
+                      padding: '4px 16px 8px',
                     }}
-                    type="submit"
+                    type='submit'
                   >
-                    <IntlMessages id="common.signup" />
+                    <IntlMessages id='common.signup' />
                   </Button>
                 </div>
               </Form>
@@ -176,61 +176,61 @@ const SignupAwsCognito = () => {
 
         <Box
           sx={{
-            color: "grey.700",
+            color: 'grey.700',
             mb: { xs: 5, md: 7 },
           }}
         >
           <span style={{ marginRight: 4 }}>
-            <IntlMessages id="common.alreadyHaveAccount" />
+            <IntlMessages id='common.alreadyHaveAccount' />
           </span>
           <Box
-            component="span"
+            component='span'
             sx={{
               fontWeight: Fonts.MEDIUM,
-              "& a": {
-                color: (theme) => theme.palette.primary.main,
-                textDecoration: "none",
+              '& a': {
+                color: theme => theme.palette.primary.main,
+                textDecoration: 'none',
               },
             }}
           >
-            <Link to="/signIn">
-              <IntlMessages id="common.signIn" />
+            <Link to='/signIn'>
+              <IntlMessages id='common.signIn' />
             </Link>
           </Box>
         </Box>
 
         <Box
           sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            backgroundColor: (theme) => theme.palette.background.default,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            backgroundColor: theme => theme.palette.background.default,
             mx: { xs: -5, lg: -10 },
             mb: { xs: -6, lg: -11 },
-            mt: "auto",
+            mt: 'auto',
             py: 2,
             px: { xs: 5, lg: 10 },
           }}
         >
           <Box
             sx={{
-              color: (theme) => theme.palette.text.secondary,
+              color: theme => theme.palette.text.secondary,
             }}
           >
-            <IntlMessages id="auth.orSignupWith" />
+            <IntlMessages id='auth.orSignupWith' />
           </Box>
           <Box
             sx={{
-              display: "flex",
-              alignItems: "center",
+              display: 'flex',
+              alignItems: 'center',
             }}
           >
             <IconButton
-              aria-label="Google"
+              aria-label='Google'
               sx={{
                 p: 2,
-                "& svg": { fontSize: 20 },
-                color: (theme) => theme.palette.text.secondary,
+                '& svg': { fontSize: 20 },
+                color: theme => theme.palette.text.secondary,
               }}
               onClick={() =>
                 Auth.federatedSignIn({
@@ -241,11 +241,11 @@ const SignupAwsCognito = () => {
               <AiOutlineGoogle />
             </IconButton>
             <IconButton
-              aria-label="Facebook"
+              aria-label='Facebook'
               sx={{
                 p: 1.5,
-                "& svg": { fontSize: 20 },
-                color: (theme) => theme.palette.text.secondary,
+                '& svg': { fontSize: 20 },
+                color: theme => theme.palette.text.secondary,
               }}
               onClick={() =>
                 Auth.federatedSignIn({
@@ -261,7 +261,7 @@ const SignupAwsCognito = () => {
         <AppInfoView />
       </Box>
     </AuthWrapper>
-  );
-};
+  )
+}
 
-export default SignupAwsCognito;
+export default SignupAwsCognito
