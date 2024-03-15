@@ -5,8 +5,7 @@ import {LocalizationProvider} from "@mui/x-date-pickers/LocalizationProvider";
 import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 import {DemoContainer} from "@mui/x-date-pickers/internals/demo";
 import {DatePicker} from "@mui/x-date-pickers/DatePicker";
-import {Box, Button, Snackbar} from "@mui/material";
-import SnackbarContent from "@mui/material/SnackbarContent";
+import {Alert, Box, Button} from "@mui/material";
 
 const FilterComponent = (onFilter, rows) => {
     const [openTahsisat, setOpenTahsisat] = useState(false);
@@ -58,8 +57,7 @@ const FilterComponent = (onFilter, rows) => {
 
     return (
         <Box sx={{marginTop: '1.5rem'}}>
-            <Grid container spacing={3}>
-                {/* Başlangıç Tarihi */}
+            <Grid container spacing={4}>
                 <Grid item xs={12} md={3} lg={3}>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DemoContainer components={['DatePicker']}>
@@ -77,7 +75,6 @@ const FilterComponent = (onFilter, rows) => {
                     </LocalizationProvider>
                 </Grid>
 
-                {/* Bitiş Tarihi */}
                 <Grid item xs={12} md={3} lg={3}>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DemoContainer components={['DatePicker']}>
@@ -95,16 +92,14 @@ const FilterComponent = (onFilter, rows) => {
                     </LocalizationProvider>
                 </Grid>
 
-                {/* Listele Butonu */}
-                <Grid item xs={12} md={3} lg={3}>
+                <Grid item xs={12} md={6} lg={3}>
                     <Button
                         variant="contained"
                         sx={{
                             marginTop: '1rem',
                             backgroundColor: '#F04F47',
-                            width: '80% !important',
+                            width: '100% !important',
                             borderRadius: '0.5rem !important',
-                            marginLeft: '2rem',
                         }}
                         onClick={handleListeleClick}
                     >
@@ -112,148 +107,143 @@ const FilterComponent = (onFilter, rows) => {
                     </Button>
                 </Grid>
 
-                {/* Tahsisat Gönder Butonu */}
-                <Grid item xs={12} md={3} lg={3}>
+                <Grid item xs={12} md={6} lg={3}>
                     <Button
                         variant="contained"
                         sx={{
                             marginTop: '1rem',
                             backgroundColor: '#0A8FDC',
-                            width: '80% !important',
+                            width: '100% !important',
                             borderRadius: '0.5rem !important'
                         }}
                         onClick={handleClickTahsisat}
                     >
                         Tahsisat Gönder
                     </Button>
-                    {/* Snackbar */}
-                    <Snackbar
-                        anchorOrigin={{vertical: 'bottom', horizontal: 'right'}}
-                        autoHideDuration={5000}
-                        open={openTahsisat}
+                    <Alert
                         onClose={handleCloseTahsisat}
+                        severity="success"
+                        sx={{
+                            borderRadius: '1rem',
+                            marginTop: '1rem',
+                            display: openTahsisat ? 'block' : 'none',
+                            position: 'fixed',
+                            bottom: '2rem',
+                            right: '2rem',
+                            zIndex: 9999,
+                        }}
                     >
-                        <SnackbarContent
-                            sx={{
-                                backgroundColor: '#11C15B',
-                                color: 'white',
-                                borderRadius: '4rem'
-                            }}
-                            message="01.01.2024–03.01.2024 günleri için tahsisat gönderimi başarıyla sağlanmıştır."
-                        />
-                    </Snackbar>
+                        01.01.2024–03.01.2024 günleri için tahsisat gönderimi başarıyla sağlanmıştır.
+                    </Alert>
                 </Grid>
 
-                <Grid container spacing={3}sx={{marginTop: '2rem'}}   >
-                    {/* Başlangıç Tarihi */}
+                <Grid container spacing={3} sx={{marginTop: '1.2rem'}}>
                     <Grid item xs={12} md={3} lg={3}>
                         <Button
                             variant="contained"
                             sx={{
                                 backgroundColor: '#0A8FDC',
-                                width: '100% !important',
+                                width: '97% !important',
                                 height: '100% !important',
                                 borderRadius: '0.5rem !important',
-                                marginLeft: '2rem',
                                 fontSize: '0.8rem',
-                                whiteSpace: 'nowrap'
+                                whiteSpace: 'nowrap',
+                                marginLeft: '1rem'
                             }}
                             onClick={handleClickEslesmeAl}
 
                         >
                             Eşleşme Al
                         </Button>
-                        <Snackbar
-                            anchorOrigin={{vertical: 'bottom', horizontal: 'right'}}
-                            autoHideDuration={5000}
-                            open={openEslesmeAl}
+                        <Alert
                             onClose={handleCloseEslesmeAl}
+                            severity="success"
+                            sx={{
+                                borderRadius: '1rem',
+                                marginTop: '1rem',
+                                display: openEslesmeAl ? 'block' : 'none',
+                                position: 'fixed',
+                                bottom: '2rem',
+                                right: '2rem',
+                                zIndex: 9999,
+                            }}
                         >
-                            <SnackbarContent
-                                sx={{
-                                    backgroundColor: '#11C15B',
-                                    color: 'white',
-                                    borderRadius: '4rem'
-                                }}
-                                message="EPİAŞ ile Eşleşme Sağlanmıştır."
-                            />
-                        </Snackbar>
+                            EPİAŞ Tarafından Eşleşme Alınmıştır.
+                        </Alert>
                     </Grid>
 
-                    {/* Bitiş Tarihi */}
                     <Grid item xs={12} md={3} lg={3}>
                         <Button
                             variant="contained"
                             sx={{
                                 backgroundColor: ' #0A8FDC',
-                                width: '100% !important',
+                                width: '97% !important',
                                 borderRadius: '0.5rem !important',
-                                marginLeft: '2rem',
                                 height: '100% !important',
                                 fontSize: '0.8rem',
-                                whiteSpace: 'nowrap'
+                                whiteSpace: 'nowrap',
+                                marginLeft: '1rem'
                             }}
                             onClick={handleClickPiyasaFiyati}
 
                         >
                             Piyasa Fiyatlarını Getir
                         </Button>
-                        <Snackbar
-                            anchorOrigin={{vertical: 'bottom', horizontal: 'right'}}
-                            autoHideDuration={5000}
-                            open={openPiyasaFiyati}
+                        <Alert
                             onClose={handleClosePiyasaFiyati}
+                            severity="success"
+                            sx={{
+                                borderRadius: '1rem',
+                                marginTop: '1rem',
+                                display: openPiyasaFiyati ? 'block' : 'none',
+                                position: 'fixed',
+                                bottom: '2rem',
+                                right: '2rem',
+                                zIndex: 9999,
+                            }}
                         >
-                            <SnackbarContent
-                                sx={{
-                                    backgroundColor: '#11C15B',
-                                    color: 'white',
-                                    borderRadius: '4rem'
-                                }}
-                                message="Piyasa Fiyatları Getirilmiştir"
-                            />
-                        </Snackbar>
+                            EPİAŞ Tarafından Piyasa Fiyatları Getirilmiştir.
+                        </Alert>
                     </Grid>
-
 
                     <Grid item xs={12} md={3} lg={3}>
                         <Button
                             variant="contained"
                             sx={{
                                 backgroundColor: '#0A8FDC',
-                                width: '100% !important',
+                                width: '96% !important',
                                 borderRadius: '0.5rem !important',
-                                marginLeft: '2rem',
                                 height: '100% !important',
                                 fontSize: '0.8rem',
-                                whiteSpace: 'nowrap'
+                                whiteSpace: 'nowrap',
+                                marginLeft: '0.9rem'
 
-                        }}
+                            }}
                             onClick={handleClickiletimEslesmeleri}
 
                         >
                             İletim Eşleşmelerini Getir
                         </Button>
-                        <Snackbar
-                            anchorOrigin={{vertical: 'bottom', horizontal: 'right'}}
-                            autoHideDuration={5000}
-                            open={openiletimEslesmeleri}
+                        <Alert
                             onClose={handleCloseiletimEslesmeleri}
+                            severity="success"
+                            sx={{
+                                borderRadius: '1rem',
+                                marginTop: '1rem',
+                                display: openiletimEslesmeleri ? 'block' : 'none',
+                                position: 'fixed',
+                                bottom: '2rem',
+                                right: '2rem',
+                                zIndex: 9999,
+                            }}
                         >
-                            <SnackbarContent
-                                sx={{
-                                    backgroundColor: '#11C15B',
-                                    color: 'white',
-                                    borderRadius: '4rem'
-                                }}
-                                message="İletim Eşleşmeleri Getirilmiştir"
-                            />
-                        </Snackbar>
+                            EPİAŞ Tarafından İletim Eşleşmeleri Getirilmiştir.
+                        </Alert>
 
                     </Grid>
                 </Grid>
 
-                </Grid>
+            </Grid>
         </Box>
     );
 };

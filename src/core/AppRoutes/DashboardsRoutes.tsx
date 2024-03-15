@@ -18,8 +18,8 @@ const SigninAuth = React.lazy(
 );
 
 // @ts-ignore
-const EpiasWebServices = React.lazy(() => import("src/modules/dashboards/epiaswebservices/epiasWebServices.tsx"));
-const ParameterManagement = React.lazy(() => import("src/modules/dashboards/parametermanagement/parametermanagement.tsx"));
+const EpiasWebServices = React.lazy(() => import("src/modules/dashboards/epiaswebservices/EpiasWebServices.tsx"));
+const ParameterManagement = React.lazy(() => import("src/modules/dashboards/parametermanagement/ParameterManagement.tsx"));
 
 export const dashBoardConfigs = [
   {
