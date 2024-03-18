@@ -1,75 +1,52 @@
-// @ts-ignore
-import {React, useState} from 'react';
+import React, { useState } from 'react';
 import Grid from "@mui/material/Grid";
-import {LocalizationProvider} from "@mui/x-date-pickers/LocalizationProvider";
-import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
-import {DemoContainer} from "@mui/x-date-pickers/internals/demo";
-import {DatePicker} from "@mui/x-date-pickers/DatePicker";
-import {Alert, Box, Button} from "@mui/material";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { Alert, Box, Button } from "@mui/material";
 
-const FilterComponent = (onFilter, rows) => {
-    const [openTahsisat, setOpenTahsisat] = useState(false);
-    const [openEslesmeAl, setOpenEslesmeAl] = useState(false);
-    const [openPiyasaFiyati, setOpenPiyasaFiyati] = useState(false);
-    const [openiletimEslesmeleri, setOpeniletimEslesmeleri] = useState(false);
-    const [startDate, setStartDate] = useState(null);
-    const [endDate, setEndDate] = useState(null);
-
-    const handleClickTahsisat = () => {
-        setOpenTahsisat(true);
-    };
-
-    const handleCloseTahsisat = () => {
-        setOpenTahsisat(false);
-    };
-    const handleClickEslesmeAl = () => {
-        setOpenEslesmeAl(true);
-    };
-
-    const handleCloseEslesmeAl = () => {
-        setOpenEslesmeAl(false);
-    };
-    const handleClickPiyasaFiyati = () => {
-        setOpenPiyasaFiyati(true);
-    };
-
-    const handleClosePiyasaFiyati = () => {
-        setOpenPiyasaFiyati(false);
-    };
-    const handleClickiletimEslesmeleri = () => {
-        setOpeniletimEslesmeleri(true);
-    };
-
-    const handleCloseiletimEslesmeleri = () => {
-        setOpeniletimEslesmeleri(false);
-    };
+const FilterComponent = ({ onFilter, rows }) => {
+    const [state, setState] = useState({
+        openTahsisat: false,
+        openEslesmeAl: false,
+        openPiyasaFiyati: false,
+        openIletimEslesmeleri: false,
+        startDate: null,
+        endDate: null
+    });
 
     const handleListeleClick = () => {
-        if (startDate && endDate) {
+        if (state.startDate && state.endDate) {
             const filteredData = rows.filter(row => {
                 const rowDate = new Date(row.gasname);
-                return rowDate >= startDate && rowDate <= endDate;
+                return rowDate >= state.startDate && rowDate <= state.endDate;
             });
             onFilter(filteredData);
         }
     };
 
+    const toggleState = (key) => {
+        setState(prevState => ({
+            ...prevState,
+            [key]: !prevState[key]
+        }));
+    };
 
     return (
-        <Box sx={{marginTop: '1.5rem'}}>
+        <Box sx={{ marginTop: '1.5rem' }}>
             <Grid container spacing={4}>
                 <Grid item xs={12} md={3} lg={3}>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DemoContainer components={['DatePicker']}>
                             <DatePicker
                                 label="Başlangıç Tarihi"
-                                value={startDate}
-                                onChange={date => setStartDate(date)}
+                                value={state.startDate}
+                                onChange={date => setState(prevState => ({ ...prevState, startDate: date }))}
                                 sx={{
                                     width: '100% !important',
                                     height: '4rem !important',
                                 }}
-
                             />
                         </DemoContainer>
                     </LocalizationProvider>
@@ -80,13 +57,12 @@ const FilterComponent = (onFilter, rows) => {
                         <DemoContainer components={['DatePicker']}>
                             <DatePicker
                                 label="Bitiş Tarihi"
-                                value={endDate}
-                                onChange={date => setEndDate(date)}
+                                value={state.endDate}
+                                onChange={date => setState(prevState => ({ ...prevState, endDate: date }))}
                                 sx={{
                                     width: '100% !important',
                                     height: '4rem !important',
                                 }}
-
                             />
                         </DemoContainer>
                     </LocalizationProvider>
@@ -116,17 +92,17 @@ const FilterComponent = (onFilter, rows) => {
                             width: '100% !important',
                             borderRadius: '0.5rem !important'
                         }}
-                        onClick={handleClickTahsisat}
+                        onClick={() => toggleState('openTahsisat')}
                     >
                         Tahsisat Gönder
                     </Button>
                     <Alert
-                        onClose={handleCloseTahsisat}
+                        onClose={() => toggleState('openTahsisat')}
                         severity="success"
                         sx={{
                             borderRadius: '1rem',
                             marginTop: '1rem',
-                            display: openTahsisat ? 'block' : 'none',
+                            display: state.openTahsisat ? 'block' : 'none',
                             position: 'fixed',
                             bottom: '2rem',
                             right: '2rem',
@@ -137,7 +113,7 @@ const FilterComponent = (onFilter, rows) => {
                     </Alert>
                 </Grid>
 
-                <Grid container spacing={3} sx={{marginTop: '1.2rem'}}>
+                <Grid container spacing={3} sx={{ marginTop: '1.2rem' }}>
                     <Grid item xs={12} md={3} lg={3}>
                         <Button
                             variant="contained"
@@ -150,18 +126,17 @@ const FilterComponent = (onFilter, rows) => {
                                 whiteSpace: 'nowrap',
                                 marginLeft: '1rem'
                             }}
-                            onClick={handleClickEslesmeAl}
-
+                            onClick={() => toggleState('openEslesmeAl')}
                         >
                             Eşleşme Al
                         </Button>
                         <Alert
-                            onClose={handleCloseEslesmeAl}
+                            onClose={() => toggleState('openEslesmeAl')}
                             severity="success"
                             sx={{
                                 borderRadius: '1rem',
                                 marginTop: '1rem',
-                                display: openEslesmeAl ? 'block' : 'none',
+                                display: state.openEslesmeAl ? 'block' : 'none',
                                 position: 'fixed',
                                 bottom: '2rem',
                                 right: '2rem',
@@ -184,18 +159,17 @@ const FilterComponent = (onFilter, rows) => {
                                 whiteSpace: 'nowrap',
                                 marginLeft: '1rem'
                             }}
-                            onClick={handleClickPiyasaFiyati}
-
+                            onClick={() => toggleState('openPiyasaFiyati')}
                         >
                             Piyasa Fiyatlarını Getir
                         </Button>
                         <Alert
-                            onClose={handleClosePiyasaFiyati}
+                            onClose={() => toggleState('openPiyasaFiyati')}
                             severity="success"
                             sx={{
                                 borderRadius: '1rem',
                                 marginTop: '1rem',
-                                display: openPiyasaFiyati ? 'block' : 'none',
+                                display: state.openPiyasaFiyati ? 'block' : 'none',
                                 position: 'fixed',
                                 bottom: '2rem',
                                 right: '2rem',
@@ -217,20 +191,18 @@ const FilterComponent = (onFilter, rows) => {
                                 fontSize: '0.8rem',
                                 whiteSpace: 'nowrap',
                                 marginLeft: '0.9rem'
-
                             }}
-                            onClick={handleClickiletimEslesmeleri}
-
+                            onClick={() => toggleState('openIletimEslesmeleri')}
                         >
                             İletim Eşleşmelerini Getir
                         </Button>
                         <Alert
-                            onClose={handleCloseiletimEslesmeleri}
+                            onClose={() => toggleState('openIletimEslesmeleri')}
                             severity="success"
                             sx={{
                                 borderRadius: '1rem',
                                 marginTop: '1rem',
-                                display: openiletimEslesmeleri ? 'block' : 'none',
+                                display: state.openIletimEslesmeleri ? 'block' : 'none',
                                 position: 'fixed',
                                 bottom: '2rem',
                                 right: '2rem',
@@ -239,10 +211,8 @@ const FilterComponent = (onFilter, rows) => {
                         >
                             EPİAŞ Tarafından İletim Eşleşmeleri Getirilmiştir.
                         </Alert>
-
                     </Grid>
                 </Grid>
-
             </Grid>
         </Box>
     );

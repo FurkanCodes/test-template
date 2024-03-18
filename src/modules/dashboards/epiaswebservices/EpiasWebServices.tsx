@@ -1,8 +1,7 @@
-// @ts-ignore
 import React, {useState} from 'react';
 import ExampleTable from '../../../components/TableComponents';
 import FilterComponent from "src/modules/dashboards/epiaswebservices/components/FilterComponent.tsx";
-import {Box, Tab, Tabs, Typography} from '@mui/material';
+import {Box, Card, Tab, Tabs, Typography} from '@mui/material';
 
 const EpiasWebServices = () => {
 
@@ -91,6 +90,7 @@ const EpiasWebServices = () => {
 
     return (
         <Box>
+            <Card sx={{ width: '100%',  height: '100%', padding: '2rem'}}>
             <Typography style={{color: 'red', fontSize: '1.375rem', marginLeft: '0.1rem'}}>EPİAŞ Web Servis</Typography>
             <FilterComponent/>
             <Tabs
@@ -108,6 +108,7 @@ const EpiasWebServices = () => {
             {activeTab === 'tab1' && <ExampleTable columns={columnsFirst} data={dataFirst}/>}
             {activeTab === 'tab2' && <ExampleTable columns={columnsSecond} data={dataSecond}/>}
             {activeTab === 'tab3' && <ExampleTable columns={columnsThird} data={dataThird}/>}
+            </Card>
         </Box>
     );
 };

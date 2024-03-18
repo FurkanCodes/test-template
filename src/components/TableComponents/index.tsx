@@ -1,10 +1,10 @@
-// @ts-ignore
 import React from 'react';
-import { MaterialReactTable, useMaterialReactTable, type MRT_ColumnDef } from 'material-react-table';
+import {MaterialReactTable, MRT_ColumnDef, useMaterialReactTable} from 'material-react-table';
+import { Card, CardContent } from "@mui/material";
 
-type TableProps = {
-    columns: MRT_ColumnDef<any>[],
-    data: any[]
+type TableProps= {
+    columns: MRT_ColumnDef<string>[],
+    data: string[]
 }
 
 const TableComponent = ({ columns, data }: TableProps) => {
@@ -13,7 +13,13 @@ const TableComponent = ({ columns, data }: TableProps) => {
         data,
     });
 
-    return <MaterialReactTable table={table} />;
+    return (
+        <Card>
+            <CardContent>
+                <MaterialReactTable table={table} />
+            </CardContent>
+        </Card>
+    );
 };
 
 export default TableComponent;
