@@ -1,25 +1,25 @@
-import React, { useState } from 'react';
-import { Form, Formik } from 'formik';
-import * as yup from 'yup';
-import ReactCodeInput from 'react-code-input';
-import { useIntl } from 'react-intl';
-import { Fonts } from '@crema/constants/AppEnums';
-import AppTextField from '@crema/components/AppFormComponents/AppTextField';
-import IntlMessages from '@crema/helpers/IntlMessages';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import AppInfoView from '@crema/components/AppInfoView';
-import AuthWrapper from '../AuthWrapper';
-import AppLogo from '@crema/components/AppLayout/components/AppLogo';
-import { useInfoViewActionsContext } from '@crema/context/AppContextProvider/InfoViewContextProvider';
+import React, { useState } from 'react'
+import { Form, Formik } from 'formik'
+import * as yup from 'yup'
+import ReactCodeInput from 'react-code-input'
+import { useIntl } from 'react-intl'
+import { Fonts } from 'src/constants/AppEnums'
+import AppTextField from 'src/components/AppFormComponents/AppTextField'
+import IntlMessages from 'src/helpers/IntlMessages'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import Button from '@mui/material/Button'
+import AppInfoView from 'src/components/AppInfoView'
+import AuthWrapper from '../AuthWrapper'
+import AppLogo from 'src/components/AppLayout/components/AppLogo'
+import { useInfoViewActionsContext } from 'src/context/AppContextProvider/InfoViewContextProvider'
 
 const ResetPasswordAwsCognito = () => {
-  const infoViewActionsContext = useInfoViewActionsContext();
+  const infoViewActionsContext = useInfoViewActionsContext()
 
-  const [pin, setPin] = useState('');
+  const [pin, setPin] = useState('')
 
-  const { messages } = useIntl();
+  const { messages } = useIntl()
 
   const validationSchema = yup.object({
     newPassword: yup
@@ -28,7 +28,7 @@ const ResetPasswordAwsCognito = () => {
     confirmPassword: yup
       .string()
       .required(String(messages['validation.reTypePassword'])),
-  });
+  })
 
   return (
     <AuthWrapper>
@@ -47,7 +47,7 @@ const ResetPasswordAwsCognito = () => {
           component='h2'
           sx={{
             mb: 1.5,
-            color: (theme) => theme.palette.text.primary,
+            color: theme => theme.palette.text.primary,
             fontWeight: Fonts.SEMI_BOLD,
             fontSize: { xs: 14, xl: 16 },
           }}
@@ -67,17 +67,17 @@ const ResetPasswordAwsCognito = () => {
             if (pin.length !== 6) {
               infoViewActionsContext.fetchError(
                 messages['validation.pinLength'] as string,
-              );
+              )
             } else if (data.newPassword !== data.confirmPassword) {
               setErrors({
                 confirmPassword: String(
                   <IntlMessages id='validation.passwordMisMatch' />,
                 ),
-              });
+              })
             } else {
-              setSubmitting(true);
-              resetForm();
-              setSubmitting(false);
+              setSubmitting(true)
+              resetForm()
+              setSubmitting(false)
             }
           }}
         >
@@ -104,7 +104,7 @@ const ResetPasswordAwsCognito = () => {
                   inputMode='numeric'
                   value={pin}
                   fields={6}
-                  onChange={(value) => setPin(value)}
+                  onChange={value => setPin(value)}
                 />
               </Box>
 
@@ -160,7 +160,7 @@ const ResetPasswordAwsCognito = () => {
         <AppInfoView />
       </Box>
     </AuthWrapper>
-  );
-};
+  )
+}
 
-export default ResetPasswordAwsCognito;
+export default ResetPasswordAwsCognito

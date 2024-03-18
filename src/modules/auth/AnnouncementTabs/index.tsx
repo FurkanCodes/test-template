@@ -58,7 +58,14 @@ export default function AnnouncementWrapper({
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider', display: 'flex' }}>
+      <Box
+        sx={{
+          borderBottom: 1,
+          borderWidth: '100%',
+          borderColor: 'divider',
+          width: '100%',
+        }} // Ensure the Box spans the full width
+      >
         <Tabs
           variant='fullWidth'
           value={value}

@@ -1,7 +1,7 @@
 import Button from '@mui/material/Button'
 import { Form, Formik } from 'formik'
 import * as yup from 'yup'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import AppInfoView from 'src/components/AppInfoView'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
@@ -12,14 +12,13 @@ import AuthWrapper from '../AuthWrapper'
 import AppLogo from 'src/components/AppLayout/components/AppLogo'
 import { useIntl } from 'react-intl'
 
-const ForgetPasswordJwtAuth = () => {
+const Verification = () => {
   const { messages } = useIntl()
-  const navigate = useNavigate()
+
   const validationSchema = yup.object({
-    email: yup
+    verificationCode: yup
       .string()
-      .email(String(messages['validation.emailFormat']))
-      .required(String(messages['validation.emailRequired'])),
+      .required(String(messages['validation.verificationCodeRequired'])),
   })
 
   return (
@@ -36,7 +35,7 @@ const ForgetPasswordJwtAuth = () => {
               fontSize: { xs: 14, xl: 16 },
             }}
           >
-            <IntlMessages id='common.forgetPassword' />
+            <IntlMessages id='common.enterVerificationCode' />
           </Typography>
 
           <Typography
@@ -71,13 +70,13 @@ const ForgetPasswordJwtAuth = () => {
             <Formik
               validateOnChange={true}
               initialValues={{
-                email: '',
+                verificationCode: '',
               }}
               validationSchema={validationSchema}
               onSubmit={(data, { setSubmitting, resetForm }) => {
                 setSubmitting(true)
+                console.log(data)
                 //reset password api goes here
-                navigate('/verification')
                 setSubmitting(false)
                 resetForm()
               }}
@@ -86,9 +85,9 @@ const ForgetPasswordJwtAuth = () => {
                 <Form style={{ textAlign: 'left' }}>
                   <Box sx={{ mb: { xs: 5, lg: 8 } }}>
                     <AppTextField
-                      placeholder='Email'
-                      name='email'
-                      label={messages['common.emailAddress'] as string}
+                      placeholder='Doğrulama Kodunu Giriniz'
+                      name='verificationCode'
+                      label={messages['common.VerificationCode'] as string}
                       sx={{
                         width: '100%',
                         '& .MuiInputBase-input': {
@@ -99,7 +98,13 @@ const ForgetPasswordJwtAuth = () => {
                     />
                   </Box>
 
-                  <div>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      gap: '10px',
+                    }}
+                  >
                     <Button
                       variant='contained'
                       color='primary'
@@ -112,9 +117,23 @@ const ForgetPasswordJwtAuth = () => {
                       }}
                       type='submit'
                     >
-                      <IntlMessages id='common.sendNewPassword' />
+                      <IntlMessages id='common.verificationCode' />
                     </Button>
-                  </div>
+                    <Button
+                      variant='contained'
+                      color='primary'
+                      disabled={isSubmitting}
+                      sx={{
+                        fontWeight: Fonts.REGULAR,
+                        textTransform: 'capitalize',
+                        fontSize: 16,
+                        minWidth: 160,
+                      }}
+                      type='submit'
+                    >
+                      <IntlMessages id='common.sendVerificationCodeAgain' />
+                    </Button>
+                  </Box>
                 </Form>
               )}
             </Formik>
@@ -127,4 +146,4 @@ const ForgetPasswordJwtAuth = () => {
   )
 }
 
-export default ForgetPasswordJwtAuth
+export default Verification
