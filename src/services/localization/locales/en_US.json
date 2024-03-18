@@ -457,9 +457,11 @@
   "dashboard.eCommerce.marketingCampaign": "Marketing Campaign",
   "invoice.invoicing": "Invoicing",
   "invoice.accounting": "Accounting",
-  "sidebar.app.dashboard.crypto": "Crypto",
-  "sidebar.app.metrics": "Metrics",
-  "sidebar.app.widgets": "Widgets",
+
+  "sidebar.app.dashboard.etalep": "E-Talep",
+  "sidebar.app.epias": "EPİAŞ Web Servis",
+  "sidebar.app.parametermanagement": "Parametre Yönetimi",
+
   "sidebar.apps": "Apps",
   "sidebar.apps.mail": "Mail",
   "sidebar.apps.todo": "ToDo",
